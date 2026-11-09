@@ -3,9 +3,21 @@ QTRSensors qtrD;
 const uint8_t SensorCount = 4;
 uint16_t sensorValuesD[SensorCount];
 
+const int In1 = 11
+const int In2 = 10
+
 void setup()
 
 {
+
+  // All motor control pins are outputs
+
+  pinMode(In1, OUTPUT);
+
+  pinMode(In2, OUTPUT);
+
+
+
   // configure the sensors
   qtrD.setTypeRC();
 
@@ -72,6 +84,9 @@ void setup()
 void loop()
 
 {
+    goStraight();
+
+  delay(1000);
 
   digitalArray();
 
@@ -104,5 +119,27 @@ void digitalArray(){
   }
 
   Serial.println(position);
+
+}
+
+void goStraight()   //run both motors in the same direction
+
+{
+
+  // turn on motor A
+
+  digitalWrite(In1, HIGH);
+
+  digitalWrite(In2, LOW);
+
+
+
+  delay(2000);
+
+  // now turn off motors
+
+  digitalWrite(In1, LOW);
+
+  digitalWrite(In2, LOW);  
 
 }
